@@ -11,6 +11,7 @@ ARG DOCKER_DEBIAN_VERSION=12.11
 # for builder images
 ARG DOCKER_GOLANG_VERSION=1.24
 ARG DOCKER_NODE_VERSION=22.16.0-bookworm
+ARG DOCKER_PYTHON_VERSION=3.12-bookworm
 ARG DOCKER_JQ_VERSION=1.8.0
 ARG DOCKER_YQ_VERSION=4.45.4
 ARG DOCKER_TAPLO_VERSION=0.10.0
@@ -54,6 +55,15 @@ RUN go install github.com/go-task/task/v3/cmd/task@${GO_GO_TASK_VERSION}
 # https://hub.docker.com/_/node
 # https://note.milldea.com/posts/two-ways-to-install-nodejs-with-fixed-version-in-dockerfile
 FROM node:${DOCKER_NODE_VERSION} AS node-builder
+
+# python
+# https://hub.docker.com/_/python
+FROM python:${DOCKER_PYTHON_VERSION} AS python-builder
+RUN mkdir -p /python-install \
+    && cp -r /usr/local/bin /python-install/ \
+    && cp -r /usr/local/lib /python-install/ \
+    && cp -r /usr/local/include /python-install/ \
+    && rm -rf /python-install/lib/pkgconfig
 
 # jq
 # https://github.com/mikefarah/yq
@@ -108,6 +118,12 @@ RUN ln -s /usr/local/bin/node /usr/local/bin/nodejs \
     && ln -s /usr/local/lib/node_modules/npm/bin/npm-cli.js /usr/local/bin/npm \
     && ln -s /usr/local/lib/node_modules/npm/bin/npm-cli.js /usr/local/bin/npx
 RUN npm install -g yarn
+
+# python
+# refs above
+COPY --from=python-builder /python-install/bin/ /usr/local/bin/
+COPY --from=python-builder /python-install/lib/ /usr/local/lib/
+COPY --from=python-builder /python-install/include/ /usr/local/include/
 
 # jq
 # refs above
