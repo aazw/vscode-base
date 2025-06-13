@@ -121,6 +121,7 @@ RUN npm install -g yarn
 
 # python
 # refs above
+RUN apt-get update -y && apt-get install -y expat
 COPY --from=python-builder /python-install/bin/ /usr/local/bin/
 COPY --from=python-builder /python-install/lib/ /usr/local/lib/
 COPY --from=python-builder /python-install/include/ /usr/local/include/
