@@ -22,8 +22,8 @@ ARG GO_SHFMT_VERSION=v3.11.0
 ARG GO_GO_TASK_VERSION=v3.44.0
 
 # for npm tools
-ARG NPM_RENOVATE_VERSION=40.54.0
 ARG NPM_PRETTIER_VERSION=3.5.3
+ARG NPM_RENOVATE_VERSION=40.54.0
 ARG NPM_CLAUDE_CODE_VERSION=1.0.22
 ARG NPM_CCUSAGE_VERSION=0.8.0
 
@@ -143,16 +143,16 @@ COPY --from=yq-builder /usr/bin/yq /usr/local/bin/
 # refs above
 COPY --from=taplo-builder /taplo /usr/local/bin/
 
+# prettier
+# https://prettier.io/docs/install
+ARG NPM_PRETTIER_VERSION
+RUN yarn global add prettier@${NPM_PRETTIER_VERSION}
+
 # renovate
 # https://github.com/renovatebot/renovate
 # https://www.npmjs.com/package/renovate
 ARG NPM_RENOVATE_VERSION
 RUN yarn global add renovate@${NPM_RENOVATE_VERSION}
-
-# prettier
-# https://prettier.io/docs/install
-ARG NPM_PRETTIER_VERSION
-RUN yarn global add prettier@${NPM_PRETTIER_VERSION}
 
 # claude-code
 # https://github.com/anthropics/claude-code
