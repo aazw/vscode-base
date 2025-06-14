@@ -85,6 +85,8 @@ FROM tamasfe/taplo:${DOCKER_TAPLO_VERSION} AS taplo-builder
 # main image
 # ##########################################################################################
 
+# debian
+# https://hub.docker.com/_/debian/
 FROM debian:${DOCKER_DEBIAN_VERSION}
 ENV DEBIAN_FRONTEND=noninteractive
 ENV DEBCONF_NOWARNINGS=yes
