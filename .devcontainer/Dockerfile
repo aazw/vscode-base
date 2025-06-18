@@ -25,7 +25,7 @@ ARG GO_GO_TASK_VERSION=v3.44.0
 ARG NPM_PRETTIER_VERSION=3.5.3
 ARG NPM_RENOVATE_VERSION=40.60.0
 ARG NPM_CLAUDE_CODE_VERSION=1.0.27
-ARG NPM_CCUSAGE_VERSION=12.1.0
+ARG NPM_CCUSAGE_VERSION=13.0.1
 
 # ##########################################################################################
 # builder images
