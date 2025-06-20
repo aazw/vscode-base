@@ -69,6 +69,42 @@
       "datasourceTemplate": "npm",
       "depNameTemplate": "ccusage",
       "versioningTemplate": "npm"
+    },
+    {
+      "customType": "regex",
+      "managerFilePatterns": ["/^\\.devcontainer\\/Dockerfile$/"],
+      "matchStringsStrategy": "any",
+      "matchStrings": ["ARG\\s+OTHER_JQ_VERSION=(?<currentValue>\\S+)"],
+      "datasourceTemplate": "github-tags",
+      "depNameTemplate": "jqlang/jq",
+      "versioningTemplate": "semver-coerced"
+    },
+    {
+      "customType": "regex",
+      "managerFilePatterns": ["/^\\.devcontainer\\/Dockerfile$/"],
+      "matchStringsStrategy": "any",
+      "matchStrings": ["ARG\\s+OTHER_YQ_VERSION=(?<currentValue>\\S+)"],
+      "datasourceTemplate": "github-tags",
+      "depNameTemplate": "mikefarah/yq",
+      "versioningTemplate": "semver-coerced"
+    },
+    {
+      "customType": "regex",
+      "managerFilePatterns": ["/^\\.devcontainer\\/Dockerfile$/"],
+      "matchStringsStrategy": "any",
+      "matchStrings": ["ARG\\s+OTHER_TAPLO_VERSION=(?<currentValue>\\S+)"],
+      "datasourceTemplate": "github-tags",
+      "depNameTemplate": "tamasfe/taplo",
+      "versioningTemplate": "semver-coerced"
+    },
+    {
+      "customType": "regex",
+      "managerFilePatterns": ["/^\\.devcontainer\\/Dockerfile$/"],
+      "matchStringsStrategy": "any",
+      "matchStrings": ["ARG\\s+OTHER_SHELLCHECK_VERSION=(?<currentValue>\\S+)"],
+      "datasourceTemplate": "github-tags",
+      "depNameTemplate": "koalaman/shellcheck",
+      "versioningTemplate": "semver-coerced"
     }
   ],
   "packageRules": [
