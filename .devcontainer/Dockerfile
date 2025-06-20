@@ -111,7 +111,8 @@ RUN apt-get update -y && apt-get install -y --no-install-recommends \
     wget \
     git \
     nano \
-    less
+    less \
+    locales-all
 
 # golang
 # refs above
