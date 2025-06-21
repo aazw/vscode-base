@@ -34,6 +34,7 @@ ARG PIP_RUFF_VERSION=0.12.0
 # for other tools (github-tags)
 ARG OTHER_JQ_VERSION=1.8.0
 ARG OTHER_YQ_VERSION=4.45.4
+ARG OTHER_XQ_VERSION=1.3.0
 ARG OTHER_TAPLO_VERSION=0.10.0
 ARG OTHER_SHELLCHECK_VERSION=v0.10.0
 
@@ -217,6 +218,18 @@ RUN curl -fsSL -o /yq https://github.com/mikefarah/yq/releases/download/v${OTHER
     && chmod +x /yq \
     && mv /yq /usr/local/bin/ \
     && yq --version
+
+# xq
+# https://github.com/sibprogrammer/xq
+ARG OTHER_XQ_VERSION
+RUN curl -fsSL -o /xq.tar.gz https://github.com/sibprogrammer/xq/releases/download/v${OTHER_XQ_VERSION}/xq_${OTHER_XQ_VERSION}_linux_$(uname -m | sed 's/aarch64/arm64/' | sed 's/x86_64/amd64/').tar.gz \
+    && mkdir -p /xq \
+    && tar -xvzf /xq.tar.gz -C /xq/ \
+    && chmod +x /xq/xq \
+    && mv /xq/xq /usr/local/bin/ \
+    && rm /xq.tar.gz \
+    && rm -rf /xq \
+    && xq --version
 
 # taplo
 # https://github.com/tamasfe/taplo
