@@ -14,5 +14,5 @@ tasks:
   remove_system_files:
     dir: "{{ .TASKFILE_DIR }}"
     cmds:
-      - find . -name ".DS_Store" -delete
+      - find . -name ".DS_Store" -delete -print
     silent: true
