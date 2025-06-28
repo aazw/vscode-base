@@ -3,11 +3,6 @@
   "emeraldwalk.runonsave": {
     "commands": [
       {
-        // .prettierrcのフォーマット
-        "match": "\\.prettierrc$",
-        "cmd": "prettier -w \"${file}\""
-      },
-      {
         // .prettierignoreのフォーマット
         "match": "\\.prettierignore$",
         "cmd": "prettier -w \"${file}\""
