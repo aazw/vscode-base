@@ -9,7 +9,7 @@
 ARG DOCKER_DEBIAN_VERSION=12.11
 
 # for builder images
-ARG DOCKER_GOLANG_VERSION=1.24-bookworm
+ARG DOCKER_GOLANG_VERSION=1.24.4-bookworm
 ARG DOCKER_NODE_VERSION=22.17.0-bookworm
 ARG DOCKER_PYTHON_VERSION=3.13-bookworm
 
@@ -24,12 +24,14 @@ ARG NPM_PRETTIER_VERSION=3.6.2
 ARG NPM_RENOVATE_VERSION=41.15.0
 ARG NPM_CLAUDE_CODE_VERSION=1.0.35
 ARG NPM_CCUSAGE_VERSION=15.2.0
+ARG NPM_REPOMIX_VERSION=0.3.9
 
 # for pip tools
 ARG PIP_PIP_VERSION=25.1.1
 ARG PIP_PIPX_VERSION=1.7.1
 ARG PIP_UV_VERSION=0.7.16
 ARG PIP_RUFF_VERSION=0.12.1
+ARG PIP_GITINGEST_VERSION=0.1.5
 
 # for other tools (github-tags)
 ARG OTHER_JQ_VERSION=1.8.0
@@ -182,6 +184,12 @@ ENV DEVCONTAINER=true
 ARG NPM_CCUSAGE_VERSION
 RUN npm install -g ccusage@${NPM_CCUSAGE_VERSION}
 
+# repomix
+# https://github.com/yamadashy/repomix
+# https://www.npmjs.com/package/repomix
+ARG NPM_REPOMIX_VERSION
+RUN npm install -g repomix@${NPM_REPOMIX_VERSION}
+
 # pip
 # https://pypi.org/project/pip/
 ARG PIP_PIP_VERSION
@@ -191,6 +199,7 @@ RUN pip install --upgrade pip==${PIP_PIP_VERSION}
 # https://github.com/pypa/pipx
 ARG PIP_PIPX_VERSION
 RUN pip install pipx==${PIP_PIPX_VERSION}
+RUN pipx ensurepath
 
 # uv
 # https://github.com/astral-sh/uv
@@ -202,6 +211,11 @@ RUN pip install uv==${PIP_UV_VERSION}
 # https://github.com/astral-sh/ruff
 ARG PIP_RUFF_VERSION
 RUN pip install ruff==${PIP_RUFF_VERSION}
+
+# gitingest
+# https://github.com/cyclotruc/gitingest
+ARG PIP_GITINGEST_VERSION
+RUN pip install gitingest==${PIP_GITINGEST_VERSION}
 
 # jq
 # https://github.com/jqlang/jq
