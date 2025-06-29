@@ -2,11 +2,14 @@ name: "Build docker image"
 
 on:
   push:
-    branches:
-      - main
-      - master
-    paths:
-      - ".devcontainer/**/*"
+    # 一旦Action無効化
+    # branches:
+    #   - main
+    #   - master
+    # paths:
+    #   - ".devcontainer/**/*"
+    branches-ignore:
+      - "**"
 
   workflow_dispatch:
 
