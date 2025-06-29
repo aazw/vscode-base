@@ -38,6 +38,78 @@
       "customType": "regex",
       "managerFilePatterns": ["/^\\.devcontainer\\/Dockerfile$/"],
       "matchStringsStrategy": "any",
+      "matchStrings": ["ARG\\s+GO_CURLIE_VERSION=(?<currentValue>\\S+)"],
+      "datasourceTemplate": "go",
+      "depNameTemplate": "github.com/rs/curlie",
+      "versioningTemplate": "semver-coerced"
+    },
+    {
+      "customType": "regex",
+      "managerFilePatterns": ["/^\\.devcontainer\\/Dockerfile$/"],
+      "matchStringsStrategy": "any",
+      "matchStrings": ["ARG\\s+GO_USQL_VERSION=(?<currentValue>\\S+)"],
+      "datasourceTemplate": "go",
+      "depNameTemplate": "github.com/xo/usql",
+      "versioningTemplate": "semver-coerced"
+    },
+    {
+      "customType": "regex",
+      "managerFilePatterns": ["/^\\.devcontainer\\/Dockerfile$/"],
+      "matchStringsStrategy": "any",
+      "matchStrings": ["ARG\\s+CARGO_EZA_VERSION=(?<currentValue>\\S+)"],
+      "datasourceTemplate": "crate",
+      "depNameTemplate": "eza",
+      "versioningTemplate": "semver-coerced"
+    },
+    {
+      "customType": "regex",
+      "managerFilePatterns": ["/^\\.devcontainer\\/Dockerfile$/"],
+      "matchStringsStrategy": "any",
+      "matchStrings": ["ARG\\s+CARGO_TOKEI_VERSION=(?<currentValue>\\S+)"],
+      "datasourceTemplate": "crate",
+      "depNameTemplate": "tokei",
+      "versioningTemplate": "semver-coerced"
+    },
+    {
+      "customType": "regex",
+      "managerFilePatterns": ["/^\\.devcontainer\\/Dockerfile$/"],
+      "matchStringsStrategy": "any",
+      "matchStrings": ["ARG\\s+CARGO_FD_VERSION=(?<currentValue>\\S+)"],
+      "datasourceTemplate": "crate",
+      "depNameTemplate": "fd-find",
+      "versioningTemplate": "semver-coerced"
+    },
+    {
+      "customType": "regex",
+      "managerFilePatterns": ["/^\\.devcontainer\\/Dockerfile$/"],
+      "matchStringsStrategy": "any",
+      "matchStrings": ["ARG\\s+CARGO_BAT_VERSION=(?<currentValue>\\S+)"],
+      "datasourceTemplate": "crate",
+      "depNameTemplate": "bat",
+      "versioningTemplate": "semver-coerced"
+    },
+    {
+      "customType": "regex",
+      "managerFilePatterns": ["/^\\.devcontainer\\/Dockerfile$/"],
+      "matchStringsStrategy": "any",
+      "matchStrings": ["ARG\\s+CARGO_LSD_VERSION=(?<currentValue>\\S+)"],
+      "datasourceTemplate": "crate",
+      "depNameTemplate": "lsd",
+      "versioningTemplate": "semver-coerced"
+    },
+    {
+      "customType": "regex",
+      "managerFilePatterns": ["/^\\.devcontainer\\/Dockerfile$/"],
+      "matchStringsStrategy": "any",
+      "matchStrings": ["ARG\\s+CARGO_BROOT_VERSION=(?<currentValue>\\S+)"],
+      "datasourceTemplate": "crate",
+      "depNameTemplate": "broot",
+      "versioningTemplate": "semver-coerced"
+    },
+    {
+      "customType": "regex",
+      "managerFilePatterns": ["/^\\.devcontainer\\/Dockerfile$/"],
+      "matchStringsStrategy": "any",
       "matchStrings": ["ARG\\s+NPM_NPM_VERSION=(?<currentValue>\\S+)"],
       "datasourceTemplate": "npm",
       "depNameTemplate": "npm",
@@ -110,6 +182,15 @@
       "customType": "regex",
       "managerFilePatterns": ["/^\\.devcontainer\\/Dockerfile$/"],
       "matchStringsStrategy": "any",
+      "matchStrings": ["ARG\\s+PIP_WHEEL_VERSION=(?<currentValue>\\S+)"],
+      "datasourceTemplate": "pypi",
+      "depNameTemplate": "wheel",
+      "versioningTemplate": "pep440"
+    },
+    {
+      "customType": "regex",
+      "managerFilePatterns": ["/^\\.devcontainer\\/Dockerfile$/"],
+      "matchStringsStrategy": "any",
       "matchStrings": ["ARG\\s+PIP_UV_VERSION=(?<currentValue>\\S+)"],
       "datasourceTemplate": "pypi",
       "depNameTemplate": "uv",
@@ -122,6 +203,24 @@
       "matchStrings": ["ARG\\s+PIP_RUFF_VERSION=(?<currentValue>\\S+)"],
       "datasourceTemplate": "pypi",
       "depNameTemplate": "ruff",
+      "versioningTemplate": "pep440"
+    },
+    {
+      "customType": "regex",
+      "managerFilePatterns": ["/^\\.devcontainer\\/Dockerfile$/"],
+      "matchStringsStrategy": "any",
+      "matchStrings": ["ARG\\s+PIP_HTTPIE_VERSION=(?<currentValue>\\S+)"],
+      "datasourceTemplate": "pypi",
+      "depNameTemplate": "httpie",
+      "versioningTemplate": "pep440"
+    },
+    {
+      "customType": "regex",
+      "managerFilePatterns": ["/^\\.devcontainer\\/Dockerfile$/"],
+      "matchStringsStrategy": "any",
+      "matchStrings": ["ARG\\s+PIP_PGCLI_VERSION=(?<currentValue>\\S+)"],
+      "datasourceTemplate": "pypi",
+      "depNameTemplate": "pgcli",
       "versioningTemplate": "pep440"
     },
     {
@@ -185,6 +284,33 @@
       "matchStrings": ["ARG\\s+OTHER_RIPGREP_VERSION=(?<currentValue>\\S+)"],
       "datasourceTemplate": "github-tags",
       "depNameTemplate": "BurntSushi/ripgrep",
+      "versioningTemplate": "semver-coerced"
+    },
+    {
+      "customType": "regex",
+      "managerFilePatterns": ["/^\\.devcontainer\\/Dockerfile$/"],
+      "matchStringsStrategy": "any",
+      "matchStrings": ["ARG\\s+OTHER_HADOLINT_VERSION=(?<currentValue>\\S+)"],
+      "datasourceTemplate": "github-tags",
+      "depNameTemplate": "hadolint/hadolint",
+      "versioningTemplate": "semver-coerced"
+    },
+    {
+      "customType": "regex",
+      "managerFilePatterns": ["/^\\.devcontainer\\/Dockerfile$/"],
+      "matchStringsStrategy": "any",
+      "matchStrings": ["ARG\\s+OTHER_GITLEAKS_VERSION=(?<currentValue>\\S+)"],
+      "datasourceTemplate": "github-tags",
+      "depNameTemplate": "gitleaks/gitleaks",
+      "versioningTemplate": "semver-coerced"
+    },
+    {
+      "customType": "regex",
+      "managerFilePatterns": ["/^\\.devcontainer\\/Dockerfile$/"],
+      "matchStringsStrategy": "any",
+      "matchStrings": ["ARG\\s+OTHER_FZF_VERSION=(?<currentValue>\\S+)"],
+      "datasourceTemplate": "github-tags",
+      "depNameTemplate": "junegunn/fzf",
       "versioningTemplate": "semver-coerced"
     }
   ],
