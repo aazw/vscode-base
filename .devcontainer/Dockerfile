@@ -15,6 +15,38 @@ ARG DOCKER_NODE_VERSION=22.17.0-bookworm
 ARG DOCKER_PYTHON_VERSION=3.13-bookworm
 
 # for debian tools (apt-get)
+ARG DEBIAN_MAKE_VERSION="4.3-4.1"
+ARG DEBIAN_BUILD_ESSENTIAL_VERSION="12.9"
+ARG DEBIAN_LIBXCB1_DEV_VERSION="1.15-1"
+ARG DEBIAN_LIBXCB_RENDER0_DEV_VERSION="1.15-1"
+ARG DEBIAN_LIBXCB_SHAPE0_DEV_VERSION="1.15-1"
+ARG DEBIAN_LIBXCB_XFIXES0_DEV_VERSION="1.15-1"
+ARG DEBIAN_CA_CERTIFICATES_VERSION="20230311"
+ARG DEBIAN_CURL_VERSION="7.88.1-10+deb12u12"
+ARG DEBIAN_WGET_VERSION="1.21.3-1+deb12u1"
+ARG DEBIAN_GIT_VERSION="1:2.39.5-0+deb12u2"
+ARG DEBIAN_TREE_VERSION="2.1.0-1"
+ARG DEBIAN_NANO_VERSION="7.2-1+deb12u1"
+ARG DEBIAN_LESS_VERSION="590-2.1~deb12u2"
+ARG DEBIAN_GZIP_VERSION="1.12-1"
+ARG DEBIAN_TAR_VERSION="1.34+dfsg-1.2+deb12u1"
+ARG DEBIAN_UNZIP_VERSION="6.0-28"
+ARG DEBIAN_XZ_UTILS_VERSION="5.4.1-1"
+ARG DEBIAN_LOCALES_ALL_VERSION="2.36-9+deb12u10"
+ARG DEBIAN_EXPAT_VERSION="2.5.0-1+deb12u1"
+ARG DEBIAN_PROCPS_VERSION="2:4.0.2-3"
+ARG DEBIAN_SUDO_VERSION="1.9.13p3-1+deb12u1"
+ARG DEBIAN_FZF_VERSION="0.38.0-1+b1"
+ARG DEBIAN_ZSH_VERSION="5.9-4+b6"
+ARG DEBIAN_MAN_DB_VERSION="2.11.2-2"
+ARG DEBIAN_GNUPG2_VERSION="2.2.40-1.1"
+ARG DEBIAN_GH_VERSION="2.23.0+dfsg1-1"
+ARG DEBIAN_IPTABLES_VERSION="1.8.9-2"
+ARG DEBIAN_IPSET_VERSION="7.17-1"
+ARG DEBIAN_IPROUTE2_VERSION="6.1.0-3"
+ARG DEBIAN_DNSUTILS_VERSION="1:9.18.33-1~deb12u2"
+ARG DEBIAN_AGGREGATE_VERSION="1.6-7+b1"
+ARG DEBIAN_LIBPQ_DEV_VERSION="15.13-0+deb12u1"
 
 # for go tools
 ARG GO_DOCKERFMT_VERSION=v0.3.7
@@ -126,7 +158,11 @@ RUN cargo install git-delta@${CARGO_DELTA_VERSION} \
 
 # fd
 # https://github.com/sharkdp/fd
-RUN apt-get update -y && apt-get install -y make
+ARG DEBIAN_MAKE_VERSION
+RUN apt-get update -y \
+    && apt-get install -y --no-install-recommends \
+        make=${DEBIAN_MAKE_VERSION} \
+    && rm -rf /var/lib/apt/lists/*
 ARG CARGO_FD_VERSION
 RUN cargo install fd-find@${CARGO_FD_VERSION} \
     && fd --version
@@ -146,7 +182,19 @@ RUN cargo install lsd@${CARGO_LSD_VERSION} \
 # broot
 # https://github.com/Canop/broot
 # https://dystroy.org/broot/install/
-RUN apt-get update -y && apt-get install -y build-essential libxcb1-dev libxcb-render0-dev libxcb-shape0-dev libxcb-xfixes0-dev -y
+ARG DEBIAN_BUILD_ESSENTIAL_VERSION
+ARG DEBIAN_LIBXCB1_DEV_VERSION
+ARG DEBIAN_LIBXCB_RENDER0_DEV_VERSION
+ARG DEBIAN_LIBXCB_SHAPE0_DEV_VERSION
+ARG DEBIAN_LIBXCB_XFIXES0_DEV_VERSION
+RUN apt-get update -y \
+    && apt-get install -y --no-install-recommends \
+        build-essential=${DEBIAN_BUILD_ESSENTIAL_VERSION} \
+        libxcb1-dev=${DEBIAN_LIBXCB1_DEV_VERSION} \
+        libxcb-render0-dev=${DEBIAN_LIBXCB_RENDER0_DEV_VERSION} \
+        libxcb-shape0-dev=${DEBIAN_LIBXCB_SHAPE0_DEV_VERSION} \
+        libxcb-xfixes0-dev=${DEBIAN_LIBXCB_SHAPE0_DEV_VERSION} \
+    && rm -rf /var/lib/apt/lists/*
 ARG CARGO_BROOT_VERSION
 RUN cargo install broot@${CARGO_BROOT_VERSION} \
     && broot --version
@@ -176,19 +224,33 @@ ENV DEBIAN_FRONTEND=noninteractive
 ENV DEBCONF_NOWARNINGS=yes
 
 # add distribution packages
-RUN apt-get update -y && apt-get install -y --no-install-recommends \
-    ca-certificates \
-    curl \
-    wget \
-    git \
-    tree \
-    nano \
-    less \
-    gzip \
-    tar \
-    unzip \
-    xz-utils \
-    locales-all
+ARG DEBIAN_CA_CERTIFICATES_VERSION
+ARG DEBIAN_CURL_VERSION
+ARG DEBIAN_WGET_VERSION
+ARG DEBIAN_GIT_VERSION
+ARG DEBIAN_TREE_VERSION
+ARG DEBIAN_NANO_VERSION
+ARG DEBIAN_LESS_VERSION
+ARG DEBIAN_GZIP_VERSION
+ARG DEBIAN_TAR_VERSION
+ARG DEBIAN_UNZIP_VERSION
+ARG DEBIAN_XZ_UTILS_VERSION
+ARG DEBIAN_LOCALES_ALL_VERSION
+RUN apt-get update -y \
+    && apt-get install -y --no-install-recommends \
+        ca-certificates=${DEBIAN_CA_CERTIFICATES_VERSION} \
+        curl=${DEBIAN_CURL_VERSION} \
+        wget=${DEBIAN_WGET_VERSION} \
+        git=${DEBIAN_GIT_VERSION} \
+        tree=${DEBIAN_TREE_VERSION} \
+        nano=${DEBIAN_NANO_VERSION} \
+        less=${DEBIAN_LESS_VERSION} \
+        gzip=${DEBIAN_GZIP_VERSION} \
+        tar=${DEBIAN_TAR_VERSION} \
+        unzip=${DEBIAN_UNZIP_VERSION} \
+        xz-utils=${DEBIAN_XZ_UTILS_VERSION} \
+        locales-all=${DEBIAN_LOCALES_ALL_VERSION} \
+    && rm -rf /var/lib/apt/lists/*
 
 # golang
 # refs above
@@ -254,16 +316,6 @@ RUN ln -s /usr/local/bin/node /usr/local/bin/nodejs \
     && npm --version \
     && npx --version
 
-# python
-# refs above
-RUN apt-get update -y && apt-get install -y expat
-COPY --from=python-builder /python-install/bin/ /usr/local/bin/
-COPY --from=python-builder /python-install/lib/ /usr/local/lib/
-COPY --from=python-builder /python-install/include/ /usr/local/include/
-ENV PIP_ROOT_USER_ACTION=ignore
-RUN python --version \
-    && pip --version
-
 # npm
 # https://github.com/npm/cli
 # https://www.npmjs.com/package/npm
@@ -289,22 +341,39 @@ RUN npm install -g renovate@${NPM_RENOVATE_VERSION} \
 # https://github.com/anthropics/claude-code/blob/main/.devcontainer/devcontainer.json
 # https://github.com/anthropics/claude-code/blob/main/.devcontainer/Dockerfile
 # https://github.com/anthropics/claude-code/blob/main/.devcontainer/init-firewall.sh
-RUN apt-get update -y && apt-get install -y \
-    less \
-    git \
-    procps \
-    sudo \
-    fzf \
-    zsh \
-    man-db \
-    unzip \
-    gnupg2 \
-    gh \
-    iptables \
-    ipset \
-    iproute2 \
-    dnsutils \
-    aggregate
+ARG DEBIAN_LESS_VERSION
+ARG DEBIAN_GIT_VERSION
+ARG DEBIAN_PROCPS_VERSION
+ARG DEBIAN_SUDO_VERSION
+ARG DEBIAN_FZF_VERSION
+ARG DEBIAN_ZSH_VERSION
+ARG DEBIAN_MAN_DB_VERSION
+ARG DEBIAN_UNZIP_VERSION
+ARG DEBIAN_GNUPG2_VERSION
+ARG DEBIAN_GH_VERSION
+ARG DEBIAN_IPTABLES_VERSION
+ARG DEBIAN_IPSET_VERSION
+ARG DEBIAN_IPROUTE2_VERSION
+ARG DEBIAN_DNSUTILS_VERSION
+ARG DEBIAN_AGGREGATE_VERSION
+RUN apt-get update -y \
+    && apt-get install -y --no-install-recommends \
+        less=${DEBIAN_LESS_VERSION} \
+        git=${DEBIAN_GIT_VERSION} \
+        procps=${DEBIAN_PROCPS_VERSION} \
+        sudo=${DEBIAN_SUDO_VERSION} \
+        # fzf=${DEBIAN_FZF_VERSION} \
+        zsh=${DEBIAN_ZSH_VERSION} \
+        man-db=${DEBIAN_MAN_DB_VERSION} \
+        unzip=${DEBIAN_UNZIP_VERSION} \
+        gnupg2=${DEBIAN_GNUPG2_VERSION} \
+        gh=${DEBIAN_GH_VERSION} \
+        iptables=${DEBIAN_IPTABLES_VERSION} \
+        ipset=${DEBIAN_IPSET_VERSION} \
+        iproute2=${DEBIAN_IPROUTE2_VERSION} \
+        dnsutils=${DEBIAN_DNSUTILS_VERSION} \
+        aggregate=${DEBIAN_AGGREGATE_VERSION} \
+    && rm -rf /var/lib/apt/lists/*
 ARG NPM_CLAUDE_CODE_VERSION
 RUN npm install -g @anthropic-ai/claude-code@${NPM_CLAUDE_CODE_VERSION} \
     && claude --version
@@ -324,6 +393,20 @@ RUN npm install -g ccusage@${NPM_CCUSAGE_VERSION}
 ARG NPM_REPOMIX_VERSION
 RUN npm install -g repomix@${NPM_REPOMIX_VERSION} \
     && repomix --version
+
+# python
+# refs above
+ARG DEBIAN_EXPAT_VERSION
+RUN apt-get update -y \
+    && apt-get install -y --no-install-recommends \
+        expat=${DEBIAN_EXPAT_VERSION} \
+    && rm -rf /var/lib/apt/lists/*
+COPY --from=python-builder /python-install/bin/ /usr/local/bin/
+COPY --from=python-builder /python-install/lib/ /usr/local/lib/
+COPY --from=python-builder /python-install/include/ /usr/local/include/
+ENV PIP_ROOT_USER_ACTION=ignore
+RUN python --version \
+    && pip --version
 
 # pip
 # https://pypi.org/project/pip/
@@ -368,7 +451,11 @@ RUN pip install httpie==${PIP_HTTPIE_VERSION} \
 # pgcli
 # https://github.com/dbcli/pgcli
 # https://pypi.org/project/pgcli/
-RUN apt-get update -y && apt-get install -y libpq-dev
+ARG DEBIAN_LIBPQ_DEV_VERSION
+RUN apt-get update -y \
+    && apt-get install -y --no-install-recommends \
+        libpq-dev=${DEBIAN_LIBPQ_DEV_VERSION} \
+    && rm -rf /var/lib/apt/lists/*
 ARG PIP_PGCLI_VERSION
 RUN pip install pgcli==${PIP_PGCLI_VERSION} \
     && pgcli --version
@@ -482,10 +569,13 @@ ARG USERNAME=vscode
 ARG USER_UID=1000
 ARG USER_GID=$USER_UID
 
+ARG DEBIAN_SUDO_VERSION
 RUN groupadd --gid $USER_GID $USERNAME \
     && useradd --uid $USER_UID --gid $USER_GID -m $USERNAME \
-    && apt-get update \
-    && apt-get install -y sudo \
+    && apt-get update -y \
+    && apt-get install -y --no-install-recommends \
+        sudo=${DEBIAN_SUDO_VERSION} \
+    && rm -rf /var/lib/apt/lists/* \
     && echo $USERNAME ALL=\(root\) NOPASSWD:ALL >/etc/sudoers.d/$USERNAME \
     && chmod 0440 /etc/sudoers.d/$USERNAME
 USER $USERNAME
