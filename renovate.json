@@ -12,9 +12,8 @@
       "managerFilePatterns": ["/^\\.devcontainer\\/Dockerfile$/"],
       "matchStringsStrategy": "any",
       "matchStrings": ["ARG\\s+DEBIAN_MAKE_VERSION=(?<currentValue>\\S+)"],
-      "datasourceTemplate": "debian",
-      "depNameTemplate": "make",
-      "versioningTemplate": "debian"
+      "datasourceTemplate": "deb",
+      "depNameTemplate": "make"
     },
     {
       "customType": "regex",
@@ -23,9 +22,8 @@
       "matchStrings": [
         "ARG\\s+DEBIAN_BUILD_ESSENTIAL_VERSION=(?<currentValue>\\S+)"
       ],
-      "datasourceTemplate": "debian",
-      "depNameTemplate": "build-essential",
-      "versioningTemplate": "debian"
+      "datasourceTemplate": "deb",
+      "depNameTemplate": "build-essential"
     },
     {
       "customType": "regex",
@@ -34,9 +32,8 @@
       "matchStrings": [
         "ARG\\s+DEBIAN_LIBXCB1_DEV_VERSION=(?<currentValue>\\S+)"
       ],
-      "datasourceTemplate": "debian",
-      "depNameTemplate": "libxcb1-dev",
-      "versioningTemplate": "debian"
+      "datasourceTemplate": "deb",
+      "depNameTemplate": "libxcb1-dev"
     },
     {
       "customType": "regex",
@@ -45,9 +42,8 @@
       "matchStrings": [
         "ARG\\s+DEBIAN_LIBXCB_RENDER0_DEV_VERSION=(?<currentValue>\\S+)"
       ],
-      "datasourceTemplate": "debian",
-      "depNameTemplate": "libxcb-render0-dev",
-      "versioningTemplate": "debian"
+      "datasourceTemplate": "deb",
+      "depNameTemplate": "libxcb-render0-dev"
     },
     {
       "customType": "regex",
@@ -56,9 +52,8 @@
       "matchStrings": [
         "ARG\\s+DEBIAN_LIBXCB_SHAPE0_DEV_VERSION=(?<currentValue>\\S+)"
       ],
-      "datasourceTemplate": "debian",
-      "depNameTemplate": "libxcb-shape0-dev",
-      "versioningTemplate": "debian"
+      "datasourceTemplate": "deb",
+      "depNameTemplate": "libxcb-shape0-dev"
     },
     {
       "customType": "regex",
@@ -67,9 +62,8 @@
       "matchStrings": [
         "ARG\\s+DEBIAN_LIBXCB_XFIXES0_DEV_VERSION=(?<currentValue>\\S+)"
       ],
-      "datasourceTemplate": "debian",
-      "depNameTemplate": "libxcb-xfixes0-dev",
-      "versioningTemplate": "debian"
+      "datasourceTemplate": "deb",
+      "depNameTemplate": "libxcb-xfixes0-dev"
     },
     {
       "customType": "regex",
@@ -78,99 +72,88 @@
       "matchStrings": [
         "ARG\\s+DEBIAN_CA_CERTIFICATES_VERSION=(?<currentValue>\\S+)"
       ],
-      "datasourceTemplate": "debian",
-      "depNameTemplate": "ca-certificates",
-      "versioningTemplate": "debian"
+      "datasourceTemplate": "deb",
+      "depNameTemplate": "ca-certificates"
     },
     {
       "customType": "regex",
       "managerFilePatterns": ["/^\\.devcontainer\\/Dockerfile$/"],
       "matchStringsStrategy": "any",
       "matchStrings": ["ARG\\s+DEBIAN_CURL_VERSION=(?<currentValue>\\S+)"],
-      "datasourceTemplate": "debian",
-      "depNameTemplate": "curl",
-      "versioningTemplate": "debian"
+      "datasourceTemplate": "deb",
+      "depNameTemplate": "curl"
     },
     {
       "customType": "regex",
       "managerFilePatterns": ["/^\\.devcontainer\\/Dockerfile$/"],
       "matchStringsStrategy": "any",
       "matchStrings": ["ARG\\s+DEBIAN_WGET_VERSION=(?<currentValue>\\S+)"],
-      "datasourceTemplate": "debian",
-      "depNameTemplate": "wget",
-      "versioningTemplate": "debian"
+      "datasourceTemplate": "deb",
+      "depNameTemplate": "wget"
     },
     {
       "customType": "regex",
       "managerFilePatterns": ["/^\\.devcontainer\\/Dockerfile$/"],
       "matchStringsStrategy": "any",
       "matchStrings": ["ARG\\s+DEBIAN_GIT_VERSION=(?<currentValue>\\S+)"],
-      "datasourceTemplate": "debian",
-      "depNameTemplate": "git",
-      "versioningTemplate": "debian"
+      "datasourceTemplate": "deb",
+      "depNameTemplate": "git"
     },
     {
       "customType": "regex",
       "managerFilePatterns": ["/^\\.devcontainer\\/Dockerfile$/"],
       "matchStringsStrategy": "any",
       "matchStrings": ["ARG\\s+DEBIAN_TREE_VERSION=(?<currentValue>\\S+)"],
-      "datasourceTemplate": "debian",
-      "depNameTemplate": "tree",
-      "versioningTemplate": "debian"
+      "datasourceTemplate": "deb",
+      "depNameTemplate": "tree"
     },
     {
       "customType": "regex",
       "managerFilePatterns": ["/^\\.devcontainer\\/Dockerfile$/"],
       "matchStringsStrategy": "any",
       "matchStrings": ["ARG\\s+DEBIAN_NANO_VERSION=(?<currentValue>\\S+)"],
-      "datasourceTemplate": "debian",
-      "depNameTemplate": "nano",
-      "versioningTemplate": "debian"
+      "datasourceTemplate": "deb",
+      "depNameTemplate": "nano"
     },
     {
       "customType": "regex",
       "managerFilePatterns": ["/^\\.devcontainer\\/Dockerfile$/"],
       "matchStringsStrategy": "any",
       "matchStrings": ["ARG\\s+DEBIAN_LESS_VERSION=(?<currentValue>\\S+)"],
-      "datasourceTemplate": "debian",
-      "depNameTemplate": "less",
-      "versioningTemplate": "debian"
+      "datasourceTemplate": "deb",
+      "depNameTemplate": "less"
     },
     {
       "customType": "regex",
       "managerFilePatterns": ["/^\\.devcontainer\\/Dockerfile$/"],
       "matchStringsStrategy": "any",
       "matchStrings": ["ARG\\s+DEBIAN_GZIP_VERSION=(?<currentValue>\\S+)"],
-      "datasourceTemplate": "debian",
-      "depNameTemplate": "gzip",
-      "versioningTemplate": "debian"
+      "datasourceTemplate": "deb",
+      "depNameTemplate": "gzip"
     },
     {
       "customType": "regex",
       "managerFilePatterns": ["/^\\.devcontainer\\/Dockerfile$/"],
       "matchStringsStrategy": "any",
       "matchStrings": ["ARG\\s+DEBIAN_TAR_VERSION=(?<currentValue>\\S+)"],
-      "datasourceTemplate": "debian",
-      "depNameTemplate": "tar",
-      "versioningTemplate": "debian"
+      "datasourceTemplate": "deb",
+      "depNameTemplate": "tar"
     },
     {
       "customType": "regex",
       "managerFilePatterns": ["/^\\.devcontainer\\/Dockerfile$/"],
       "matchStringsStrategy": "any",
       "matchStrings": ["ARG\\s+DEBIAN_UNZIP_VERSION=(?<currentValue>\\S+)"],
-      "datasourceTemplate": "debian",
-      "depNameTemplate": "unzip",
-      "versioningTemplate": "debian"
+      "datasourceTemplate": "deb",
+      "depNameTemplate": "unzip"
     },
     {
       "customType": "regex",
       "managerFilePatterns": ["/^\\.devcontainer\\/Dockerfile$/"],
       "matchStringsStrategy": "any",
       "matchStrings": ["ARG\\s+DEBIAN_XZ_UTILS_VERSION=(?<currentValue>\\S+)"],
-      "datasourceTemplate": "debian",
-      "depNameTemplate": "xz-utils",
-      "versioningTemplate": "debian"
+      "datasourceTemplate": "deb",
+      "depNameTemplate": "xz-utils"
     },
     {
       "customType": "regex",
@@ -179,135 +162,120 @@
       "matchStrings": [
         "ARG\\s+DEBIAN_LOCALES_ALL_VERSION=(?<currentValue>\\S+)"
       ],
-      "datasourceTemplate": "debian",
-      "depNameTemplate": "locales-all",
-      "versioningTemplate": "debian"
+      "datasourceTemplate": "deb",
+      "depNameTemplate": "locales-all"
     },
     {
       "customType": "regex",
       "managerFilePatterns": ["/^\\.devcontainer\\/Dockerfile$/"],
       "matchStringsStrategy": "any",
       "matchStrings": ["ARG\\s+DEBIAN_PROCPS_VERSION=(?<currentValue>\\S+)"],
-      "datasourceTemplate": "debian",
-      "depNameTemplate": "procps",
-      "versioningTemplate": "debian"
+      "datasourceTemplate": "deb",
+      "depNameTemplate": "procps"
     },
     {
       "customType": "regex",
       "managerFilePatterns": ["/^\\.devcontainer\\/Dockerfile$/"],
       "matchStringsStrategy": "any",
       "matchStrings": ["ARG\\s+DEBIAN_SUDO_VERSION=(?<currentValue>\\S+)"],
-      "datasourceTemplate": "debian",
-      "depNameTemplate": "sudo",
-      "versioningTemplate": "debian"
+      "datasourceTemplate": "deb",
+      "depNameTemplate": "sudo"
     },
     {
       "customType": "regex",
       "managerFilePatterns": ["/^\\.devcontainer\\/Dockerfile$/"],
       "matchStringsStrategy": "any",
       "matchStrings": ["ARG\\s+DEBIAN_FZF_VERSION=(?<currentValue>\\S+)"],
-      "datasourceTemplate": "debian",
-      "depNameTemplate": "fzf",
-      "versioningTemplate": "debian"
+      "datasourceTemplate": "deb",
+      "depNameTemplate": "fzf"
     },
     {
       "customType": "regex",
       "managerFilePatterns": ["/^\\.devcontainer\\/Dockerfile$/"],
       "matchStringsStrategy": "any",
       "matchStrings": ["ARG\\s+DEBIAN_ZSH_VERSION=(?<currentValue>\\S+)"],
-      "datasourceTemplate": "debian",
-      "depNameTemplate": "zsh",
-      "versioningTemplate": "debian"
+      "datasourceTemplate": "deb",
+      "depNameTemplate": "zsh"
     },
     {
       "customType": "regex",
       "managerFilePatterns": ["/^\\.devcontainer\\/Dockerfile$/"],
       "matchStringsStrategy": "any",
       "matchStrings": ["ARG\\s+DEBIAN_MAN_DB_VERSION=(?<currentValue>\\S+)"],
-      "datasourceTemplate": "debian",
-      "depNameTemplate": "man-db",
-      "versioningTemplate": "debian"
+      "datasourceTemplate": "deb",
+      "depNameTemplate": "man-db"
     },
     {
       "customType": "regex",
       "managerFilePatterns": ["/^\\.devcontainer\\/Dockerfile$/"],
       "matchStringsStrategy": "any",
       "matchStrings": ["ARG\\s+DEBIAN_GNUPG2_VERSION=(?<currentValue>\\S+)"],
-      "datasourceTemplate": "debian",
-      "depNameTemplate": "gnupg2",
-      "versioningTemplate": "debian"
+      "datasourceTemplate": "deb",
+      "depNameTemplate": "gnupg2"
     },
     {
       "customType": "regex",
       "managerFilePatterns": ["/^\\.devcontainer\\/Dockerfile$/"],
       "matchStringsStrategy": "any",
       "matchStrings": ["ARG\\s+DEBIAN_GH_VERSION=(?<currentValue>\\S+)"],
-      "datasourceTemplate": "debian",
-      "depNameTemplate": "gh",
-      "versioningTemplate": "debian"
+      "datasourceTemplate": "deb",
+      "depNameTemplate": "gh"
     },
     {
       "customType": "regex",
       "managerFilePatterns": ["/^\\.devcontainer\\/Dockerfile$/"],
       "matchStringsStrategy": "any",
       "matchStrings": ["ARG\\s+DEBIAN_IPTABLES_VERSION=(?<currentValue>\\S+)"],
-      "datasourceTemplate": "debian",
-      "depNameTemplate": "iptables",
-      "versioningTemplate": "debian"
+      "datasourceTemplate": "deb",
+      "depNameTemplate": "iptables"
     },
     {
       "customType": "regex",
       "managerFilePatterns": ["/^\\.devcontainer\\/Dockerfile$/"],
       "matchStringsStrategy": "any",
       "matchStrings": ["ARG\\s+DEBIAN_IPSET_VERSION=(?<currentValue>\\S+)"],
-      "datasourceTemplate": "debian",
-      "depNameTemplate": "ipset",
-      "versioningTemplate": "debian"
+      "datasourceTemplate": "deb",
+      "depNameTemplate": "ipset"
     },
     {
       "customType": "regex",
       "managerFilePatterns": ["/^\\.devcontainer\\/Dockerfile$/"],
       "matchStringsStrategy": "any",
       "matchStrings": ["ARG\\s+DEBIAN_IPROUTE2_VERSION=(?<currentValue>\\S+)"],
-      "datasourceTemplate": "debian",
-      "depNameTemplate": "iproute2",
-      "versioningTemplate": "debian"
+      "datasourceTemplate": "deb",
+      "depNameTemplate": "iproute2"
     },
     {
       "customType": "regex",
       "managerFilePatterns": ["/^\\.devcontainer\\/Dockerfile$/"],
       "matchStringsStrategy": "any",
       "matchStrings": ["ARG\\s+DEBIAN_DNSUTILS_VERSION=(?<currentValue>\\S+)"],
-      "datasourceTemplate": "debian",
-      "depNameTemplate": "dnsutils",
-      "versioningTemplate": "debian"
+      "datasourceTemplate": "deb",
+      "depNameTemplate": "dnsutils"
     },
     {
       "customType": "regex",
       "managerFilePatterns": ["/^\\.devcontainer\\/Dockerfile$/"],
       "matchStringsStrategy": "any",
       "matchStrings": ["ARG\\s+DEBIAN_AGGREGATE_VERSION=(?<currentValue>\\S+)"],
-      "datasourceTemplate": "debian",
-      "depNameTemplate": "aggregate",
-      "versioningTemplate": "debian"
+      "datasourceTemplate": "deb",
+      "depNameTemplate": "aggregate"
     },
     {
       "customType": "regex",
       "managerFilePatterns": ["/^\\.devcontainer\\/Dockerfile$/"],
       "matchStringsStrategy": "any",
       "matchStrings": ["ARG\\s+DEBIAN_EXPAT_VERSION=(?<currentValue>\\S+)"],
-      "datasourceTemplate": "debian",
-      "depNameTemplate": "expat",
-      "versioningTemplate": "debian"
+      "datasourceTemplate": "deb",
+      "depNameTemplate": "expat"
     },
     {
       "customType": "regex",
       "managerFilePatterns": ["/^\\.devcontainer\\/Dockerfile$/"],
       "matchStringsStrategy": "any",
       "matchStrings": ["ARG\\s+DEBIAN_LIBPQ_DEV_VERSION=(?<currentValue>\\S+)"],
-      "datasourceTemplate": "debian",
-      "depNameTemplate": "libpq-dev",
-      "versioningTemplate": "debian"
+      "datasourceTemplate": "deb",
+      "depNameTemplate": "libpq-dev"
     },
     {
       "customType": "regex",
