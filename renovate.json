@@ -14,7 +14,7 @@
       "matchStrings": ["ARG\\s+DEBIAN_MAKE_VERSION=(?<currentValue>\\S+)"],
       "datasourceTemplate": "deb",
       "depNameTemplate": "make",
-      "registryUrlTemplate": "https://deb.debian.org/debian?suite=stable&components=main,contrib,non-free&binaryArch=arm64"
+      "registryUrlTemplate": "https://deb.debian.org/debian?suite=bookworm&components=main,contrib,non-free&binaryArch=arm64"
     },
     {
       "customType": "regex",
