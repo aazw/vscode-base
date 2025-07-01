@@ -15,12 +15,16 @@ ARG DOCKER_NODE_VERSION=22.17.0-bookworm
 ARG DOCKER_PYTHON_VERSION=3.13-bookworm
 
 # for debian tools (apt-get)
+# https://packages.debian.org/search?keywords=search
 ARG DEBIAN_MAKE_VERSION=4.3-4
 ARG DEBIAN_BUILD_ESSENTIAL_VERSION=12.9
 ARG DEBIAN_LIBXCB1_DEV_VERSION=1.15-1
 ARG DEBIAN_LIBXCB_RENDER0_DEV_VERSION=1.15-1
 ARG DEBIAN_LIBXCB_SHAPE0_DEV_VERSION=1.15-1
 ARG DEBIAN_LIBXCB_XFIXES0_DEV_VERSION=1.15-1
+ARG DEBIAN_BASH_VERSION=5.2.15-2+b8
+ARG DEBIAN_ZSH_VERSION=5.9-4+b6
+ARG DEBIAN_GNUPG_VERSION=2.2.40-1.1
 ARG DEBIAN_CA_CERTIFICATES_VERSION=20230311
 ARG DEBIAN_CURL_VERSION=7.88.1-10+deb12u12
 ARG DEBIAN_WGET_VERSION=1.21.3-1+deb12u1
@@ -36,7 +40,6 @@ ARG DEBIAN_LOCALES_ALL_VERSION=2.36-9+deb12u10
 ARG DEBIAN_PROCPS_VERSION=2:4.0.2-3
 ARG DEBIAN_SUDO_VERSION=1.9.13p3-1+deb12u1
 ARG DEBIAN_FZF_VERSION=0.38.0-1+b1
-ARG DEBIAN_ZSH_VERSION=5.9-4+b6
 ARG DEBIAN_MAN_DB_VERSION=2.11.2-2
 ARG DEBIAN_GNUPG2_VERSION=2.2.40-1.1
 ARG DEBIAN_GH_VERSION=2.23.0+dfsg1-1
@@ -224,6 +227,9 @@ ENV DEBIAN_FRONTEND=noninteractive
 ENV DEBCONF_NOWARNINGS=yes
 
 # add distribution packages
+ARG DEBIAN_BASH_VERSION
+ARG DEBIAN_ZSH_VERSION
+ARG DEBIAN_GNUPG_VERSION
 ARG DEBIAN_CA_CERTIFICATES_VERSION
 ARG DEBIAN_CURL_VERSION
 ARG DEBIAN_WGET_VERSION
@@ -238,6 +244,9 @@ ARG DEBIAN_XZ_UTILS_VERSION
 ARG DEBIAN_LOCALES_ALL_VERSION
 RUN apt-get update -y \
     && apt-get install -y --no-install-recommends \
+        bash=${DEBIAN_BASH_VERSION} \
+        zsh=${DEBIAN_ZSH_VERSION} \
+        gnupg=${DEBIAN_GNUPG_VERSION} \
         ca-certificates=${DEBIAN_CA_CERTIFICATES_VERSION} \
         curl=${DEBIAN_CURL_VERSION} \
         wget=${DEBIAN_WGET_VERSION} \
@@ -470,7 +479,8 @@ RUN pip install gitingest==${PIP_GITINGEST_VERSION}
 # jq
 # https://github.com/jqlang/jq
 ARG OTHER_JQ_VERSION
-RUN curl -fsSL -o /jq https://github.com/jqlang/jq/releases/download/jq-${OTHER_JQ_VERSION}/jq-linux-$(uname -m | sed 's/aarch64/arm64/' | sed 's/x86_64/amd64/') \
+RUN ARCH=$(uname -m | sed 's/aarch64/arm64/' | sed 's/x86_64/amd64/') \
+    && curl -fsSL -o /jq https://github.com/jqlang/jq/releases/download/jq-${OTHER_JQ_VERSION}/jq-linux-${ARCH} \
     && chmod +x /jq \
     && mv /jq /usr/local/bin/ \
     && jq --version
@@ -479,7 +489,8 @@ RUN curl -fsSL -o /jq https://github.com/jqlang/jq/releases/download/jq-${OTHER_
 # https://github.com/mikefarah/yq
 # https://hub.docker.com/r/mikefarah/yq
 ARG OTHER_YQ_VERSION
-RUN curl -fsSL -o /yq https://github.com/mikefarah/yq/releases/download/v${OTHER_YQ_VERSION}/yq_linux_$(uname -m | sed 's/aarch64/arm64/' | sed 's/x86_64/amd64/') \
+RUN ARCH=$(uname -m | sed 's/aarch64/arm64/' | sed 's/x86_64/amd64/') \
+    && curl -fsSL -o /yq https://github.com/mikefarah/yq/releases/download/v${OTHER_YQ_VERSION}/yq_linux_${ARCH} \
     && chmod +x /yq \
     && mv /yq /usr/local/bin/ \
     && yq --version
@@ -487,13 +498,15 @@ RUN curl -fsSL -o /yq https://github.com/mikefarah/yq/releases/download/v${OTHER
 # xq
 # https://github.com/sibprogrammer/xq
 ARG OTHER_XQ_VERSION
-RUN curl -fsSL -o /xq.tar.gz https://github.com/sibprogrammer/xq/releases/download/v${OTHER_XQ_VERSION}/xq_${OTHER_XQ_VERSION}_linux_$(uname -m | sed 's/aarch64/arm64/' | sed 's/x86_64/amd64/').tar.gz \
+RUN ARCH=$(uname -m | sed 's/aarch64/arm64/' | sed 's/x86_64/amd64/') \
+    && curl -fsSL -o /xq.tar.gz https://github.com/sibprogrammer/xq/releases/download/v${OTHER_XQ_VERSION}/xq_${OTHER_XQ_VERSION}_linux_${ARCH}.tar.gz \
     && mkdir -p /xq \
     && tar -xvzf /xq.tar.gz -C /xq/ \
     && chmod +x /xq/xq \
     && mv /xq/xq /usr/local/bin/ \
     && rm /xq.tar.gz \
     && rm -rf /xq \
+    && cd / \
     && xq --version
 
 # taplo
@@ -501,7 +514,8 @@ RUN curl -fsSL -o /xq.tar.gz https://github.com/sibprogrammer/xq/releases/downlo
 # https://taplo.tamasfe.dev/
 # https://hub.docker.com/r/tamasfe/taplo
 ARG OTHER_TAPLO_VERSION
-RUN curl -fsSL -o /taplo.gz https://github.com/tamasfe/taplo/releases/download/${OTHER_TAPLO_VERSION}/taplo-linux-$(uname -m | sed 's/arm64/aarch64/' | sed 's/amd64/x86_64/').gz \
+RUN ARCH=$(uname -m | sed 's/arm64/aarch64/' | sed 's/amd64/x86_64/') \
+    && curl -fsSL -o /taplo.gz https://github.com/tamasfe/taplo/releases/download/${OTHER_TAPLO_VERSION}/taplo-linux-${ARCH}.gz \
     && gzip -d /taplo.gz \
     && chmod +x /taplo \
     && mv /taplo /usr/local/bin/ \
@@ -511,30 +525,38 @@ RUN curl -fsSL -o /taplo.gz https://github.com/tamasfe/taplo/releases/download/$
 # https://github.com/koalaman/shellcheck
 # https://hub.docker.com/r/koalaman/shellcheck
 ARG OTHER_SHELLCHECK_VERSION
-RUN curl -fsSL -o /shellcheck.tar.xz https://github.com/koalaman/shellcheck/releases/download/${OTHER_SHELLCHECK_VERSION}/shellcheck-${OTHER_SHELLCHECK_VERSION}.linux.$(uname -m | sed 's/arm64/aarch64/' | sed 's/amd64/x86_64/').tar.xz \
+RUN ARCH=$(uname -m | sed 's/arm64/aarch64/' | sed 's/amd64/x86_64/') \
+    && curl -fsSL -o /shellcheck.tar.xz https://github.com/koalaman/shellcheck/releases/download/${OTHER_SHELLCHECK_VERSION}/shellcheck-${OTHER_SHELLCHECK_VERSION}.linux.${ARCH}.tar.xz \
     && tar -xvf /shellcheck.tar.xz -C / \
     && chmod +x /shellcheck-${OTHER_SHELLCHECK_VERSION}/shellcheck \
     && mv /shellcheck-${OTHER_SHELLCHECK_VERSION}/shellcheck /usr/local/bin/ \
     && rm /shellcheck.tar.xz \
     && rm -rf /shellcheck-${OTHER_SHELLCHECK_VERSION} \
+    && cd / \
     && shellcheck --version
 
 # ripgrep
 # https://github.com/BurntSushi/ripgrep
+# * https://github.com/BurntSushi/ripgrep/releases/download/14.1.1/ripgrep-14.1.1-aarch64-unknown-linux-gnu.tar.gz
+# * https://github.com/BurntSushi/ripgrep/releases/download/14.1.1/ripgrep-14.1.1-x86_64-unknown-linux-musl.tar.gz
 ARG OTHER_RIPGREP_VERSION
-RUN mkdir -p /ripgrep \
-    && curl -fsSL -o /ripgrep/ripgrep.tar.gz -L https://github.com/BurntSushi/ripgrep/releases/download/${OTHER_RIPGREP_VERSION}/ripgrep-${OTHER_RIPGREP_VERSION}-$(uname -m)-unknown-linux-gnu.tar.gz \
+RUN ARCH=$(uname -m) \
+    && LIBC=$([ "$ARCH" = "x86_64" ] && echo unknown-linux-musl || echo unknown-linux-gnu) \
+    && mkdir -p /ripgrep \
+    && curl -fsSL -o /ripgrep/ripgrep.tar.gz -L https://github.com/BurntSushi/ripgrep/releases/download/${OTHER_RIPGREP_VERSION}/ripgrep-${OTHER_RIPGREP_VERSION}-${ARCH}-${LIBC}.tar.gz \
     && cd /ripgrep \
     && tar -xvzf ripgrep.tar.gz \
-    && mv ripgrep-${OTHER_RIPGREP_VERSION}-$(uname -m)-unknown-linux-gnu/rg /usr/local/bin/ \
+    && mv ripgrep-${OTHER_RIPGREP_VERSION}-${ARCH}-${LIBC}/rg /usr/local/bin/ \
     && chmod +x /usr/local/bin/rg \
     && rm -rf /ripgrep \
+    && cd / \
     && rg --version
 
 # hadolint
 # https://github.com/hadolint/hadolint
 ARG OTHER_HADOLINT_VERSION
-RUN curl -fsSL -o /hadolint https://github.com/hadolint/hadolint/releases/download/${OTHER_HADOLINT_VERSION}/hadolint-Linux-$(uname -m | sed 's/aarch64/arm64/' | sed 's/amd64/x86_64/') \
+RUN ARCH=$(uname -m | sed 's/aarch64/arm64/' | sed 's/amd64/x86_64/') \
+    && curl -fsSL -o /hadolint https://github.com/hadolint/hadolint/releases/download/${OTHER_HADOLINT_VERSION}/hadolint-Linux-${ARCH} \
     && chmod +x /hadolint \
     && mv /hadolint /usr/local/bin/ \
     && hadolint --version
@@ -542,25 +564,29 @@ RUN curl -fsSL -o /hadolint https://github.com/hadolint/hadolint/releases/downlo
 # gitleaks
 # https://github.com/gitleaks/gitleaks
 ARG OTHER_GITLEAKS_VERSION
-RUN mkdir -p /gitleaks \
-    && curl -fsSL -o /gitleaks/gitleaks.tar.gz https://github.com/gitleaks/gitleaks/releases/download/v${OTHER_GITLEAKS_VERSION}/gitleaks_${OTHER_GITLEAKS_VERSION}_linux_$(uname -m | sed 's/aarch64/arm64/' | sed 's/x86_64/x64/' | sed 's/x86_64/x64/').tar.gz \
+RUN ARCH=$(uname -m | sed 's/aarch64/arm64/' | sed 's/x86_64/x64/' | sed 's/x86_64/x64/') \
+    && mkdir -p /gitleaks \
+    && curl -fsSL -o /gitleaks/gitleaks.tar.gz https://github.com/gitleaks/gitleaks/releases/download/v${OTHER_GITLEAKS_VERSION}/gitleaks_${OTHER_GITLEAKS_VERSION}_linux_${ARCH}.tar.gz \
     && cd /gitleaks/ \
     && tar -xvzf gitleaks.tar.gz \
     && chmod +x gitleaks \
     && mv gitleaks /usr/local/bin/ \
     && rm -rf /gitleaks \
+    && cd / \
     && gitleaks --version
 
 # fzf
 # https://github.com/junegunn/fzf
 ARG OTHER_FZF_VERSION
-RUN mkdir -p /fzf \
-    && curl -fsSL -o /fzf/fzf.tar.gz https://github.com/junegunn/fzf/releases/download/v${OTHER_FZF_VERSION}/fzf-${OTHER_FZF_VERSION}-linux_$(uname -m | sed 's/aarch64/arm64/' | sed 's/x86_64/amd64/').tar.gz \
+RUN ARCH=$(uname -m | sed 's/aarch64/arm64/' | sed 's/x86_64/amd64/') \
+    && mkdir -p /fzf \
+    && curl -fsSL -o /fzf/fzf.tar.gz https://github.com/junegunn/fzf/releases/download/v${OTHER_FZF_VERSION}/fzf-${OTHER_FZF_VERSION}-linux_${ARCH}.tar.gz \
     && cd /fzf/ \
     && tar -xvzf fzf.tar.gz \
     && chmod +x fzf \
     && mv fzf /usr/local/bin/ \
     && rm -rf /fzf \
+    && cd / \
     && fzf --version
 
 # add vscode user
