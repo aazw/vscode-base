@@ -69,6 +69,30 @@
       "customType": "regex",
       "managerFilePatterns": ["/^\\.devcontainer\\/Dockerfile$/"],
       "matchStringsStrategy": "any",
+      "matchStrings": ["ARG\\s+DEBIAN_BASH_VERSION=(?<currentValue>\\S+)"],
+      "datasourceTemplate": "deb",
+      "depNameTemplate": "bash"
+    },
+    {
+      "customType": "regex",
+      "managerFilePatterns": ["/^\\.devcontainer\\/Dockerfile$/"],
+      "matchStringsStrategy": "any",
+      "matchStrings": ["ARG\\s+DEBIAN_ZSH_VERSION=(?<currentValue>\\S+)"],
+      "datasourceTemplate": "deb",
+      "depNameTemplate": "zsh"
+    },
+    {
+      "customType": "regex",
+      "managerFilePatterns": ["/^\\.devcontainer\\/Dockerfile$/"],
+      "matchStringsStrategy": "any",
+      "matchStrings": ["ARG\\s+DEBIAN_GNUPG_VERSION=(?<currentValue>\\S+)"],
+      "datasourceTemplate": "deb",
+      "depNameTemplate": "gnupg"
+    },
+    {
+      "customType": "regex",
+      "managerFilePatterns": ["/^\\.devcontainer\\/Dockerfile$/"],
+      "matchStringsStrategy": "any",
       "matchStrings": [
         "ARG\\s+DEBIAN_CA_CERTIFICATES_VERSION=(?<currentValue>\\S+)"
       ],
@@ -188,14 +212,6 @@
       "matchStrings": ["ARG\\s+DEBIAN_FZF_VERSION=(?<currentValue>\\S+)"],
       "datasourceTemplate": "deb",
       "depNameTemplate": "fzf"
-    },
-    {
-      "customType": "regex",
-      "managerFilePatterns": ["/^\\.devcontainer\\/Dockerfile$/"],
-      "matchStringsStrategy": "any",
-      "matchStrings": ["ARG\\s+DEBIAN_ZSH_VERSION=(?<currentValue>\\S+)"],
-      "datasourceTemplate": "deb",
-      "depNameTemplate": "zsh"
     },
     {
       "customType": "regex",
