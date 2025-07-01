@@ -12,10 +12,9 @@
       "managerFilePatterns": ["/^\\.devcontainer\\/Dockerfile$/"],
       "matchStringsStrategy": "any",
       "matchStrings": ["ARG\\s+DEBIAN_MAKE_VERSION=(?<currentValue>\\S+)"],
-      "datasourceTemplate": "deb",
-      "depNameTemplate": "make",
-      "versioningTemplate": "loose",
-      "registryUrlTemplate": "https://deb.debian.org/debian?suite=bookworm&components=main,contrib,non-free&binaryArch=arm64"
+      "datasourceTemplate": "repology",
+      "depNameTemplate": "debian_12/make-dfsg",
+      "versioningTemplate": "loose"
     },
     {
       "customType": "regex",
