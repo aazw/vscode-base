@@ -623,13 +623,13 @@ RUN go version \
     && node --version \
     && npm --version \
     && npx --version \
-    && python --version \
-    && pip --version \
     && prettier --version \
     && renovate --version \
     && claude --version \
     # && ccusage --version \
     && repomix --version \
+    && python --version \
+    && pip --version \
     && pipx --version \
     && wheel version \
     && uv --version \
