@@ -151,6 +151,14 @@
       "customType": "regex",
       "managerFilePatterns": ["/^\\.devcontainer\\/Dockerfile$/"],
       "matchStringsStrategy": "any",
+      "matchStrings": ["ARG\\s+DEBIAN_ZIP_VERSION=(?<currentValue>\\S+)"],
+      "datasourceTemplate": "deb",
+      "depNameTemplate": "zip"
+    },
+    {
+      "customType": "regex",
+      "managerFilePatterns": ["/^\\.devcontainer\\/Dockerfile$/"],
+      "matchStringsStrategy": "any",
       "matchStrings": ["ARG\\s+DEBIAN_GZIP_VERSION=(?<currentValue>\\S+)"],
       "datasourceTemplate": "deb",
       "depNameTemplate": "gzip"
@@ -159,17 +167,17 @@
       "customType": "regex",
       "managerFilePatterns": ["/^\\.devcontainer\\/Dockerfile$/"],
       "matchStringsStrategy": "any",
-      "matchStrings": ["ARG\\s+DEBIAN_TAR_VERSION=(?<currentValue>\\S+)"],
+      "matchStrings": ["ARG\\s+DEBIAN_UNZIP_VERSION=(?<currentValue>\\S+)"],
       "datasourceTemplate": "deb",
-      "depNameTemplate": "tar"
+      "depNameTemplate": "unzip"
     },
     {
       "customType": "regex",
       "managerFilePatterns": ["/^\\.devcontainer\\/Dockerfile$/"],
       "matchStringsStrategy": "any",
-      "matchStrings": ["ARG\\s+DEBIAN_UNZIP_VERSION=(?<currentValue>\\S+)"],
+      "matchStrings": ["ARG\\s+DEBIAN_TAR_VERSION=(?<currentValue>\\S+)"],
       "datasourceTemplate": "deb",
-      "depNameTemplate": "unzip"
+      "depNameTemplate": "tar"
     },
     {
       "customType": "regex",
