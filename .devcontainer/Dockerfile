@@ -75,6 +75,7 @@ ARG NPM_RENOVATE_VERSION=41.15.0
 ARG NPM_CLAUDE_CODE_VERSION=1.0.59
 ARG NPM_CCUSAGE_VERSION=15.5.1
 ARG NPM_REPOMIX_VERSION=1.2.0
+ARG NPM_OPENAI_CODEX_VERSION=0.39.0
 
 # for pip tools
 ARG PIP_PIP_VERSION=25.1.1
@@ -405,6 +406,12 @@ RUN npm install -g ccusage@${NPM_CCUSAGE_VERSION}
 ARG NPM_REPOMIX_VERSION
 RUN npm install -g repomix@${NPM_REPOMIX_VERSION} \
     && repomix --version
+
+# openai/codex
+# https://www.npmjs.com/package/@openai/codex
+# https://developers.openai.com/codex/cli
+ARG NPM_OPENAI_CODEX_VERSION
+RUN npm install -g @openai/codex@${NPM_OPENAI_CODEX_VERSION}
 
 # python
 # refs above
