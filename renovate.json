@@ -630,8 +630,7 @@
     },
     {
       "matchFileNames": [".devcontainer/**"],
-      "groupName": "devcontainer",
-      "excludeDatasources": ["docker", "deb"]
+      "groupName": "devcontainer"
     },
     {
       "matchFileNames": [".devcontainer/Dockerfile"],
