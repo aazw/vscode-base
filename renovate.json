@@ -611,6 +611,17 @@
   ],
   "packageRules": [
     {
+      "matchDatasources": ["deb"],
+      "registryUrls": [
+        "https://deb.debian.org/debian?suite=bookworm&components=main,contrib,non-free,non-free-firmware&binaryArch=amd64",
+        "https://deb.debian.org/debian?suite=bookworm&components=main,contrib,non-free,non-free-firmware&binaryArch=arm64",
+        "https://deb.debian.org/debian?suite=bookworm-updates&components=main,contrib,non-free,non-free-firmware&binaryArch=amd64",
+        "https://deb.debian.org/debian?suite=bookworm-updates&components=main,contrib,non-free,non-free-firmware&binaryArch=arm64",
+        "https://security.debian.org/debian-security?suite=bookworm-security&components=main,contrib,non-free,non-free-firmware&binaryArch=amd64",
+        "https://security.debian.org/debian-security?suite=bookworm-security&components=main,contrib,non-free,non-free-firmware&binaryArch=arm64"
+      ]
+    },
+    {
       "enabled": false,
       "matchManagers": ["custom.regex"],
       "matchDatasources": ["npm"],
