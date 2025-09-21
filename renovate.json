@@ -613,12 +613,12 @@
     {
       "matchDatasources": ["deb"],
       "registryUrls": [
-        "https://deb.debian.org/debian?suite=trixie&components=main,contrib,non-free,non-free-firmware&binaryArch=amd64",
-        "https://deb.debian.org/debian?suite=trixie&components=main,contrib,non-free,non-free-firmware&binaryArch=arm64",
-        "https://deb.debian.org/debian?suite=trixie-updates&components=main,contrib,non-free,non-free-firmware&binaryArch=amd64",
-        "https://deb.debian.org/debian?suite=trixie-updates&components=main,contrib,non-free,non-free-firmware&binaryArch=arm64",
-        "https://security.debian.org/debian-security?suite=trixie-security&components=main,contrib,non-free,non-free-firmware&binaryArch=amd64",
-        "https://security.debian.org/debian-security?suite=trixie-security&components=main,contrib,non-free,non-free-firmware&binaryArch=arm64"
+        "https://deb.debian.org/debian?suite=bookworm&components=main,contrib,non-free,non-free-firmware&binaryArch=amd64",
+        "https://deb.debian.org/debian?suite=bookworm&components=main,contrib,non-free,non-free-firmware&binaryArch=arm64",
+        "https://deb.debian.org/debian?suite=bookworm-updates&components=main,contrib,non-free,non-free-firmware&binaryArch=amd64",
+        "https://deb.debian.org/debian?suite=bookworm-updates&components=main,contrib,non-free,non-free-firmware&binaryArch=arm64",
+        "https://security.debian.org/debian-security?suite=bookworm-security&components=main,contrib,non-free,non-free-firmware&binaryArch=amd64",
+        "https://security.debian.org/debian-security?suite=bookworm-security&components=main,contrib,non-free,non-free-firmware&binaryArch=arm64"
       ]
     },
     {
@@ -630,7 +630,21 @@
     },
     {
       "matchFileNames": [".devcontainer/**"],
-      "groupName": "devcontainer"
+      "groupName": "devcontainer",
+      "excludeDatasources": ["docker", "deb"]
+    },
+    {
+      "matchFileNames": [".devcontainer/Dockerfile"],
+      "matchManagers": ["dockerfile"], 
+      "matchDatasources": ["docker"],
+      "matchDepNames": ["debian", "golang", "rust", "node", "python"],
+      "groupName": "devcontainer-docker"
+    },
+    {
+      "matchFileNames": [".devcontainer/Dockerfile"],
+      "matchManagers": ["custom.regex"], 
+      "matchDatasources": ["deb"],
+      "groupName": "devcontainer-deb"
     },
     {
       "matchFileNames": [".github/workflows/*.yaml"],
