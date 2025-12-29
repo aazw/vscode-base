@@ -1,36 +1,15 @@
 {
+  "editor.wordWrap": "off",
+  "[markdown]": {
+    "editor.wordWrap": "off"
+  },
   "editor.formatOnSave": false,
   "emeraldwalk.runonsave": {
     "commands": [
       {
-        // .prettierignoreのフォーマット
-        "match": "\\.prettierignore$",
-        "cmd": "prettier -w \"${file}\""
-      },
-      {
-        // Dcokerfileのフォーマット
-        "match": "\\bDockerfile$",
-        "cmd": "dockerfmt -n -w \"${file}\""
-      },
-      {
-        // シェルスクリプトのフォーマット
-        "match": "\\.sh$",
-        "cmd": "shfmt -w \"${file}\""
-      },
-      {
-        // YAMLのフォーマット
-        "match": "\\.ya?ml$",
-        "cmd": "prettier -w \"${file}\""
-      },
-      {
-        // JSONのフォーマット
-        "match": "\\.json$",
-        "cmd": "prettier -w \"${file}\""
-      },
-      {
-        // TOMLのフォーマット
-        "match": "\\.toml$",
-        "cmd": "taplo fmt \"${file}\""
+        // treefmt側でフォーマッタを選択する
+        "match": ".*",
+        "cmd": "treefmt \"${file}\""
       }
     ]
   }
