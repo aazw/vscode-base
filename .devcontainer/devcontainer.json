@@ -1,6 +1,6 @@
 {
   "name": "vsc-base",
-  "image": "aazw/devcontainers-devbox-base:1",
+  "image": "aazw/devcontainers-devbox-base:2",
   "features": {
     "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {
       "version": "latest",
