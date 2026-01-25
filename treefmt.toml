@@ -2,23 +2,50 @@
 command = "prettier"
 options = ["-w"]
 includes = ["*.json"]
+excludes = []
 
 [formatter.yaml]
 command = "yamlfmt"
 options = []
 includes = ["*.yaml", "*.yml", ".yamlfmt"]
+excludes = []
 
 [formatter.dockerfmt]
 command = "dockerfmt"
 options = ["-n", "-w"]
 includes = ["**/Dockerfile"]
+excludes = []
 
 [formatter.shfmt]
 command = "shfmt"
 options = ["-w"]
 includes = ["*.sh"]
+excludes = []
 
 [formatter.taplo]
 command = "taplo"
 options = ["fmt"]
 includes = ["*.toml"]
+excludes = []
+
+# [formatter.xml]
+# command = "bash"
+# options = [
+#   "-c",
+#   'for f in "$@"; do xmllint --format "$f" --output "$f"; done',
+#   "--",
+# ]
+# includes = ["*.xml"]
+# excludes = []
+
+# [formatter.ruff]
+# command = "uv"
+# options = ["run", "ruff", "format"]
+# includes = ["*.py"]
+# excludes = []
+
+# [formatter.go]
+# command = "gofmt"
+# options = ["-w"]
+# includes = ["*.go"]
+# excludes = []
