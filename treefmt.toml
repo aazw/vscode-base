@@ -49,3 +49,9 @@ excludes = []
 # options = ["-w"]
 # includes = ["*.go"]
 # excludes = []
+
+# [formatter.biome]
+# command = "bunx"
+# options = ["@biomejs/biome", "format", "--write"]
+# includes = ["*.js", "*.jsx", "*.ts", "*.tsx", "*.css", "*.html"]
+# excludes = []
