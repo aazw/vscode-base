@@ -452,3 +452,6 @@ core.*
 # Codex セッションキャッシュ：ホスト側の ~/.codex/* を .codex-home-cache/ にマウントして利用（.gitkeep は保持）
 .codex-home-cache/*
 !.codex-home-cache/.gitkeep
+
+# Devbox：ローカル開発環境用の設定／状態ディレクトリを除外
+.devbox
