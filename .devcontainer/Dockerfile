@@ -18,6 +18,3 @@ COPY --from=builder /code/vscode-base/.devbox /code/vscode-base/.devbox
 USER vscode
 
 ENV PATH="/code/vscode-base/.devbox/nix/profile/default/bin:${PATH}"
-
-
-
