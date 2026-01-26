@@ -1,6 +1,6 @@
 {
   "name": "vsc-base-${localWorkspaceFolderBasename}-${devcontainerId}",
-  "image": "aazw/devcontainers-devbox-base:6",
+  "image": "aazw/devcontainers-devbox-base:9",
   // "build":{
   //   "dockerfile": "Dockerfile",
   //   "context": "."
